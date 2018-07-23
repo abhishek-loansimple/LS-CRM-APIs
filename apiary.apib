@@ -1,0 +1,72 @@
+FORMAT: 1A
+HOST: https://dev.loansimple.in
+
+# LS CRM
+
+
+
+## Authentication [/auth/]
+
+### Auth Token [POST]
+Authorize using mobile and password
+
++ username (string)
++ password (string)
+
++ Request (application/json)
+
+        {
+            "username": "paisabazaar",
+            "password": "paisabazaar"
+        }
++ Response 200 (application/json)
+
+
+## Leads [/api/v2/crm/paisabazaar/leads/]
+
+### Leads [POST]
+Create lead
+
++ Request (application/json)
+
+    + Headers 
+            Authorization: "Key received when logged in"
+
+
+    + Body
+        {
+            "business_name": "STRING : REQUIRED",
+            "mobiles": [
+                "no space, no any special char: only number : REQUIRED"
+            ],
+            "emails": [
+                "Standard Format: OPTIONAL"
+            ],
+            "business_models": [
+                "From given list or other"
+            ],
+            "pos_already_installed": "'yes' or 'no'",
+            "pos_installment_required": "'yes' or 'no'",
+            "monthly_pos_collection": "From given list",
+            "loan_requirement": "From given list",
+            "loan_amount": "From given list",
+            "loan_purpose": "From given list or other",
+            "loan_month": "From given list"
+        }
+
++ Response 201 (application/json)
+
+
+## Constants [/api/v2/crm/constants/?fields=loan_amount,loan_purpose,loan_month,loan_requirement,monthly_pos_collection,business_models]
+
+
+### Get Constants [GET]
+Constants are key-value pair, used for creating leads
+
++ Request (application/json)
+
+    + Headers 
+            Authorization: "Key received when logged in"
+
+
++ Response 201 (application/json)
